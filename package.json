@@ -11,9 +11,10 @@
   },
   "scripts": {
     "prepare": "pnpm run build",
-    "build": "rm -rf lib && pnpm run build:esm && pnpm run build:cjs",
-    "build:esm": "tsc --sourcemap",
-    "build:cjs": "tsc --module commonjs --outDir lib/cjs --sourcemap",
+    "build": "rm -rf lib && pnpm run build:types && pnpm run build:esm && pnpm run build:cjs",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir lib/esm",
+    "build:esm": "babel src/index.tsx --out-file lib/esm/index.js --source-maps",
+    "build:cjs": "babel src/index.tsx --out-file lib/cjs/index.js --source-maps --plugins @babel/plugin-transform-modules-commonjs",
     "dev": "tsc -w",
     "codecov": "codecov",
     "gendoc": "typedoc",
@@ -77,6 +78,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.28.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
     "@solidjs/testing-library": "^0.8.10",
     "@testing-library/jest-dom": "^5.14.1",
