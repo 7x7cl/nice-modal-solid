@@ -1,16 +1,17 @@
 {
-  "name": "@ebay/nice-modal-react",
+  "name": "@7x7cl/nice-modal-solid",
   "version": "1.2.13",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
-  "repository": "https://github.com/eBay/nice-modal-react",
+  "repository": "https://github.com/7x7cl/nice-modal-solid",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
   "scripts": {
-    "build": "rm -rf lib && npm run build:esm && npm run build:cjs",
+    "prepare": "pnpm run build",
+    "build": "rm -rf lib && pnpm run build:esm && pnpm run build:cjs",
     "build:esm": "tsc --sourcemap",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs --sourcemap",
     "dev": "tsc -w",
@@ -107,8 +108,6 @@
     "glob-parent": "6.0.1"
   },
   "peerDependencies": {
-    "react": ">16.8.0",
-    "react-dom": ">16.8.0",
     "solid-js": ">=1.8.0"
   }
 }
