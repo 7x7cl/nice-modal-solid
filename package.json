@@ -10,7 +10,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "scripts": {
-    "build": "rm -rf lib && yarn build:esm && yarn build:cjs",
+    "build": "rm -rf lib && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --sourcemap",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs --sourcemap",
     "dev": "tsc -w",
@@ -54,14 +54,30 @@
       "jsx",
       "node"
     ],
+    "transform": {
+      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js"
+    },
+    "moduleNameMapper": {
+      "^solid-js/web$": "<rootDir>/node_modules/solid-js/web/dist/web.cjs"
+    },
+    "transformIgnorePatterns": [],
     "resetMocks": true
   },
   "babel": {
     "presets": [
-      "react-app"
+      "solid",
+      [
+        "@babel/preset-typescript",
+        {
+          "allExtensions": true,
+          "isTSX": true
+        }
+      ]
     ]
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.27.1",
+    "@solidjs/testing-library": "^0.8.10",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/react-hooks": "^7.0.1",
@@ -71,6 +87,7 @@
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "babel-preset-react-app": "^10.0.0",
+    "babel-preset-solid": "^1.9.5",
     "codecov": "^3.8.3",
     "eslint": "^7.30.0",
     "eslint-plugin-jest": "^24.3.7",
@@ -82,6 +99,7 @@
     "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
     "react-dom": "^17.0.2",
+    "solid-js": "^1.9.5",
     "typedoc": "^0.21.7",
     "typescript": "^4.3.5"
   },
@@ -90,6 +108,7 @@
   },
   "peerDependencies": {
     "react": ">16.8.0",
-    "react-dom": ">16.8.0"
+    "react-dom": ">16.8.0",
+    "solid-js": ">=1.8.0"
   }
 }

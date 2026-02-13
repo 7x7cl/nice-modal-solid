@@ -1,28 +1,23 @@
 'use strict';
 
 const babelJest = require('babel-jest');
+const createTransformer =
+  babelJest.createTransformer ||
+  babelJest?.default?.createTransformer ||
+  babelJest.default ||
+  babelJest;
 
-const hasJsxRuntime = (() => {
-  if (process.env.DISABLE_NEW_JSX_TRANSFORM === 'true') {
-    return false;
-  }
-
-  try {
-    require.resolve('react/jsx-runtime');
-    return true;
-  } catch (e) {
-    return false;
-  }
-})();
-
-module.exports = babelJest.createTransformer({
+module.exports = createTransformer({
   presets: [
+    [require.resolve('babel-preset-solid'), { generate: 'dom' }],
     [
-      require.resolve('babel-preset-react-app'),
+      require.resolve('@babel/preset-env'),
       {
-        runtime: hasJsxRuntime ? 'automatic' : 'classic',
+        targets: { node: 'current' },
+        modules: 'commonjs',
       },
     ],
+    [require.resolve('@babel/preset-typescript'), { allExtensions: true, isTSX: true }],
   ],
   babelrc: false,
   configFile: false,
