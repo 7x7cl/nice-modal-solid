@@ -2,4 +2,4 @@ language: node_js
 node_js:
   - 16
 after_success: npm run codecov
-install: yarn
+install: pnpm install --frozen-lockfile

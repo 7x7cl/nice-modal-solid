@@ -112,11 +112,8 @@ For pages management, we already have router framework like React Router, it hel
 ## Installation
 
 ```bash
-# with yarn
-yarn add nice-modal-solid
-
-# or with npm
-npm install nice-modal-solid
+# with pnpm
+pnpm add nice-modal-solid
 ```
 
 ## Create Your Modal Component
@@ -461,23 +458,23 @@ git clone https://github.com/eBay/nice-modal-react.git
 
 # 2. Install deps
 cd nice-modal-react
-yarn
+pnpm install
 
 # 3. Make local repo as linked
-yarn link
+pnpm link --global
 
 # 4. Start dev server
-yarn dev
+pnpm dev
 
 # 5. Install examples deps
 cd example
-yarn
+pnpm install
 
 # 6. Use local linked lib
-yarn link @ebay/nice-modal-react
+pnpm link --global @ebay/nice-modal-react
 
 # 7. Start examples dev server
-yarn start
+pnpm start
 ```
 
 Then you can access http://localhost:3000 to see the examples.
