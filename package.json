@@ -1,11 +1,11 @@
 {
-  "name": "@ebay/nice-modal-react",
+  "name": "nice-modal-solid",
   "version": "1.2.13",
   "license": "MIT",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
-  "repository": "https://github.com/eBay/nice-modal-react",
+  "repository": "https://github.com/7x7cl/nice-modal-solid",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
@@ -89,7 +89,6 @@
     "glob-parent": "6.0.1"
   },
   "peerDependencies": {
-    "react": ">16.8.0",
-    "react-dom": ">16.8.0"
+    "solid-js": ">1.8.0"
   }
 }
