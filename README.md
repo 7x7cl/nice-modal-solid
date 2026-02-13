@@ -420,14 +420,16 @@ You can test your nice modals with tools like `@solidjs/testing-library`.
 
 ```jsx
 import NiceModal from 'nice-modal-solid';
-import { render, screen } from '@solidjs/testing-library';
+import { render, screen, waitFor } from '@solidjs/testing-library';
 import { MyNiceModal } from '../MyNiceModal';
 
-test('My nice modal works!', () => {
+test('My nice modal works!', async () => {
   render(<NiceModal.Provider />
   NiceModal.show(MyNiceModal);
   
-  expect(screen.getByRole('dialog')).toBeVisible();
+  await waitFor(() => {
+    expect(screen.getByRole('dialog')).toBeVisible();
+  });
 });
 ```
 
