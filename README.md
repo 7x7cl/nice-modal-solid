@@ -151,17 +151,19 @@ Since we will manage the status of modals globally, the first thing is embedding
 
 ```js
 import NiceModal from 'nice-modal-solid';
-ReactDOM.render(
-  <React.StrictMode>
+import { render } from 'solid-js/web';
+
+render(
+  () => (
     <NiceModal.Provider>
       <App />
     </NiceModal.Provider>
-  </React.StrictMode>,
-  document.getElementById('root'),
+  ),
+  document.getElementById('root') as HTMLElement,
 );
 ```
 
-The provider will use React context to maintain all modals' state.
+The provider will use SolidJS context to maintain all modals' state.
 
 ### Using the modal by component
 You can control a nice modal by the component itself.
@@ -288,7 +290,7 @@ Though not necessary, you can integrate Redux to manage the state of nice modals
 ```jsx
 // First combine the reducer
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import { Provider, useSelector, useDispatch } from 'react-redux';
+import { Provider, useSelector, useDispatch } from 'solid-redux';
 import NiceModal from 'nice-modal-solid';
 import { Button } from 'antd';
 import { MyAntdModal } from './MyAntdModal';
@@ -414,19 +416,16 @@ https://7x7cl.github.io/nice-modal-solid/api/
 
 ## Testing
 
-You can test your nice modals with tools like `@testing-library/react`.
+You can test your nice modals with tools like `@solidjs/testing-library`.
 
 ```jsx
 import NiceModal from 'nice-modal-solid';
-import { render, act, screen } from '@testing-library/react';
+import { render, screen } from '@solidjs/testing-library';
 import { MyNiceModal } from '../MyNiceModal';
 
 test('My nice modal works!', () => {
   render(<NiceModal.Provider />
-  
-  act(() => {
-    NiceModal.show(MyNiceModal);
-  });
+  NiceModal.show(MyNiceModal);
   
   expect(screen.getByRole('dialog')).toBeVisible();
 });
@@ -479,5 +478,3 @@ See more [here](https://github.com/7x7cl/nice-modal-solid/issues/104).
 
 # License
 MIT
-
-
